@@ -1,0 +1,72 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/DOI-USGS/ghsc-esi-shakemap:
+      branch: main
+      repo: https://github.com/DOI-USGS/ghsc-esi-shakemap.git
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/DOI-USGS/ghsc-esi-shakemap git:
+        commands:
+        - /usr/bin/env sh .sqa/script.chewy-olivine-wildebeest.sh
+        container: qc.acc_seedy-black-blue
+  QC.Doc:
+    repos:
+      github.com/DOI-USGS/ghsc-esi-shakemap find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.flabby-cobalt-dunker.sh
+        container: qc.doc_goopy-orchid-uakari
+      github.com/DOI-USGS/ghsc-esi-shakemap git:
+        commands:
+        - /usr/bin/env sh .sqa/script.craggy-violet-catfish.sh
+        container: qc.doc_scanty-orchid-urchin
+      github.com/DOI-USGS/ghsc-esi-shakemap markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.gamy-lilac-coati.sh
+        container: qc.doc_fuzzy-amber-horse
+      github.com/DOI-USGS/ghsc-esi-shakemap restructuredtext-lint:
+        commands:
+        - /usr/bin/env sh .sqa/script.ready-peach-uakari.sh
+        container: qc.doc_paltry-thistle-fox
+  QC.Lic:
+    repos:
+      github.com/DOI-USGS/ghsc-esi-shakemap licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.sickly-violet-tzu.sh
+        container: qc.lic_wimpy-magnolia-koala
+  QC.Sec:
+    repos:
+      github.com/DOI-USGS/ghsc-esi-shakemap bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.wimpy-maroon-greyhound.sh
+        container: qc.sec_foggy-jade-uakari
+  QC.Sty:
+    repos:
+      github.com/DOI-USGS/ghsc-esi-shakemap flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.paltry-emerald-mayfly.sh
+        container: qc.sty_surly-smalt-bombay
+      github.com/DOI-USGS/ghsc-esi-shakemap jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.gloppy-peach-tzu.sh
+        container: qc.sty_fuzzy-gamboge-jellyfish
+  QC.Uni:
+    repos:
+      github.com/DOI-USGS/ghsc-esi-shakemap pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.dorky-tan-bordeaux.sh
+        container: qc.uni_craggy-amaranth-balinese
+  QC.Ver:
+    repos:
+      github.com/DOI-USGS/ghsc-esi-shakemap get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.homey-gamboge-yak.sh
+        container: qc.ver_homey-turquoise-bobcat
+timeout: 5400
